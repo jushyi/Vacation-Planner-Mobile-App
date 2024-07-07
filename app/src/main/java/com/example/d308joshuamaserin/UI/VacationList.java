@@ -77,9 +77,9 @@ public class VacationList extends AppCompatActivity {
         //adds sample vacations and excursions to database from Vacation List menu option "Add Sample Data"
         if (item.getItemId() == R.id.sample) {
             repository = new Repository(getApplication());
-            Vacation vacation = new Vacation(0, "Japan");
+            Vacation vacation = new Vacation(0, "Japan Trip", "HiltonInn", "07/07/24", "08/07/24");
             repository.insert(vacation);
-            vacation = new Vacation(0, "Brazil");
+            vacation = new Vacation(0, "Brazil Trip", "SpringHillSuites", "02/23/24", "06/08/24");
             repository.insert(vacation);
             Excursion excursion = new Excursion(0, "Tour", 1);
             repository.insert(excursion);
