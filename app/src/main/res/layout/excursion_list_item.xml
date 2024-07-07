@@ -7,7 +7,7 @@
     android:background="#BCBCBC">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:padding="5dp"
@@ -19,5 +19,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <!--android:layout_height="wrap_content"
+    android:text="TextView"
+    tools:layout_editor_absoluteX="163dp"
+    tools:layout_editor_absoluteY="267dp"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
