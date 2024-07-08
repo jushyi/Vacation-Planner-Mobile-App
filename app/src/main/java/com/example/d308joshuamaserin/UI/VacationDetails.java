@@ -326,8 +326,8 @@ public class VacationDetails extends AppCompatActivity {
 
     //the logic to set the date alarm
     public void alertPicker(String dateFromScreen, String alert) {
-        String myFormat = "MM/dd/yy";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        String dateFormat = "MM/dd/yy";
+        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
         Date myDate = null;
         try {
             myDate = sdf.parse(dateFromScreen);

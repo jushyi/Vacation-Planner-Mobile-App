@@ -19,6 +19,8 @@ public class ExcursionAdapter extends RecyclerView.Adapter<ExcursionAdapter.Excu
     private List<Excursion> mExcursions;
     private final Context context;
     private final LayoutInflater mInflater;
+
+    //sets up the recyclerview list for excursions
     class ExcursionViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView excursionItemView;
