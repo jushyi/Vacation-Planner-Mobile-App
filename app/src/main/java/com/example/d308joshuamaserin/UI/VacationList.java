@@ -81,9 +81,9 @@ public class VacationList extends AppCompatActivity {
             repository.insert(vacation);
             vacation = new Vacation(0, "Brazil Trip", "SpringHillSuites", "02/23/24", "06/08/24");
             repository.insert(vacation);
-            Excursion excursion = new Excursion(0, "Tour", 1);
+            Excursion excursion = new Excursion(0, "Tour", 1, "07/21/24");
             repository.insert(excursion);
-            excursion = new Excursion(0, "Paragliding", 1);
+            excursion = new Excursion(0, "Paragliding", 1, "07/13/24");
             repository.insert(excursion);
             return true;
         }
