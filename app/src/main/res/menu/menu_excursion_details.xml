@@ -7,4 +7,7 @@
     <item android:title="Delete Excursion"
         android:id="@+id/deleteExcursion"/>
 
+    <item android:title="Set Alert"
+        android:id="@+id/excursionAlert"/>
+
 </menu>
