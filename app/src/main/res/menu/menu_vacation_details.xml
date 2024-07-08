@@ -13,8 +13,8 @@
     <item android:title="Alert End"
         android:id="@+id/alertEnd"/>
 
-    <item android:title="Alert Full"
-        android:id="@+id/alertFull"/>
+    <item android:title="Alert Both Dates"
+        android:id="@+id/alertBoth"/>
 
     <item android:title="Share"
         android:id="@+id/share"/>

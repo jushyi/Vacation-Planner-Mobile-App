@@ -55,4 +55,5 @@ public class Excursion {
     public void setExcursionDate(String excursionDate) {
         this.excursionDate = excursionDate;
     }
+
 }

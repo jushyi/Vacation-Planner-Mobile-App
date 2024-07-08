@@ -29,7 +29,7 @@ public class Repository {
     }
 
     //retrieves vacations from the database, else creates a new one
-    public List<Vacation> getmAllVacations() {
+    public List<Vacation> getMAllVacations() {
         databaseExecutor.execute(() -> {
             mAllVacations = mVacationDAO.getAllVacations();
         });
@@ -82,7 +82,7 @@ public class Repository {
     }
 
     //retrieves excursions from the database, else creates a new one
-    public List<Excursion> getmAllExcursions() {
+    public List<Excursion> getMAllExcursions() {
         databaseExecutor.execute(() -> {
             mAllExcursions = mExcursionDAO.getAllExcursions();
         });
@@ -147,4 +147,5 @@ public class Repository {
             throw new RuntimeException(e);
         }
     }
+
 }

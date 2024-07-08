@@ -57,11 +57,13 @@ public class VacationDetails extends AppCompatActivity {
 
     List<Excursion> filteredExcursions = new ArrayList<>();
 
+    //for alert
     Random rand = new Random();
     int numAlert = rand.nextInt(99999);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vacation_details);
 
@@ -94,15 +96,16 @@ public class VacationDetails extends AppCompatActivity {
         final ExcursionAdapter excursionAdapter = new ExcursionAdapter(this);
         recyclerView.setAdapter(excursionAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        for (Excursion e: repository.getmAllExcursions()) {
+        for (Excursion e: repository.getMAllExcursions()) {
             if (e.getVacationID() == vacationID) filteredExcursions.add(e);
         }
-        excursionAdapter.setmExcursions(filteredExcursions);
+        excursionAdapter.setMExcursions(filteredExcursions);
 
         //date info
         String dateFormat = "MM/dd/yy";
         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
 
+        //for displaying date
         if (setStartDate != null) {
             try {
                 Date startDate = sdf.parse(setStartDate);
@@ -121,7 +124,8 @@ public class VacationDetails extends AppCompatActivity {
         editStartDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Date date;
+
+                //for displaying date
                 String info = editStartDate.getText().toString();
                 if (info.equals("")) info = setStartDate;
                 try {
@@ -154,7 +158,8 @@ public class VacationDetails extends AppCompatActivity {
         editEndDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Date date;
+
+                //for displaying date
                 String info = editEndDate.getText().toString();
                 if (info.equals("")) info = setEndDate;
                 try {
@@ -216,6 +221,8 @@ public class VacationDetails extends AppCompatActivity {
             SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
             String startDateString = sdf.format(myCalendarStartDate.getTime());
             String endDateString = sdf.format(myCalendarEndDate.getTime());
+
+            //validation for vacation dates
             try {
                 Date startDate = sdf.parse(startDateString);
                 Date endDate = sdf.parse(endDateString);
@@ -226,9 +233,9 @@ public class VacationDetails extends AppCompatActivity {
                     //if the vacation doesn't exist makes a new vacation
                     if (vacationID == -1) {
                         //if the vacation list is empty, make this vacation its first vacation, otherwise makes it last
-                        if (repository.getmAllVacations().size() == 0) vacationID = 1;
+                        if (repository.getMAllVacations().size() == 0) vacationID = 1;
                         else
-                            vacationID = repository.getmAllVacations().get(repository.getmAllVacations().size() - 1).getVacationId() + 1;
+                            vacationID = repository.getMAllVacations().get(repository.getMAllVacations().size() - 1).getVacationId() + 1;
                         vacation = new Vacation(vacationID,
                                 editTitle.getText().toString(),
                                 editHotel.getText().toString(),
@@ -253,11 +260,11 @@ public class VacationDetails extends AppCompatActivity {
 
         //delete vacation menu item
         if (item.getItemId() == R.id.deleteVacation) {
-            for (Vacation vac : repository.getmAllVacations()) {
+            for (Vacation vac : repository.getMAllVacations()) {
                 if (vac.getVacationId() == vacationID) currentVacation = vac;
             }
             numExcursions = 0;
-            for (Excursion excursion : repository.getmAllExcursions()) {
+            for (Excursion excursion : repository.getMAllExcursions()) {
                 if (excursion.getVacationID() == vacationID) ++numExcursions;
             }
             //if the vacation has any associated excursions, does not allow user to delete vacation and shows message.
@@ -266,7 +273,8 @@ public class VacationDetails extends AppCompatActivity {
                 repository.delete(currentVacation);
                 Toast.makeText(VacationDetails.this, currentVacation.getVacationTitle() + " was deleted", Toast.LENGTH_LONG).show();
                 VacationDetails.this.finish();
-            } else {
+            }
+            else {
                 Toast.makeText(VacationDetails.this, "Cannot delete a vacation if it has excursions", Toast.LENGTH_LONG).show();
             }
         }
@@ -290,7 +298,7 @@ public class VacationDetails extends AppCompatActivity {
         }
 
         //alert for both start and end date
-        if (item.getItemId() == R.id.alertFull) {
+        if (item.getItemId() == R.id.alertBoth) {
             String dateFromScreen = editStartDate.getText().toString();
             String alert = "Vacation " + title + " is starting";
             alertPicker(dateFromScreen, alert);
@@ -332,7 +340,8 @@ public class VacationDetails extends AppCompatActivity {
         Date myDate = null;
         try {
             myDate = sdf.parse(dateFromScreen);
-        } catch (ParseException e) {
+        }
+        catch (ParseException e) {
             e.printStackTrace();
         }
         Long trigger = myDate.getTime();
@@ -355,10 +364,10 @@ public class VacationDetails extends AppCompatActivity {
         recyclerView.setAdapter(excursionAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<Excursion> filteredExcursions = new ArrayList<>();
-        for (Excursion e: repository.getmAllExcursions()) {
+        for (Excursion e: repository.getMAllExcursions()) {
             if (e.getVacationID() == vacationID) filteredExcursions.add(e);
         }
-        excursionAdapter.setmExcursions(filteredExcursions);
+        excursionAdapter.setMExcursions(filteredExcursions);
 
         updateLabelStart();
         updateLabelEnd();

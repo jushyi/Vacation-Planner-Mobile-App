@@ -40,7 +40,7 @@ public class VacationList extends AppCompatActivity {
         //recyclerview populates with vacation data from database
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         repository = new Repository(getApplication());
-        List<Vacation> allVacations = repository.getmAllVacations();
+        List<Vacation> allVacations = repository.getMAllVacations();
         final VacationAdapter vacationAdapter = new VacationAdapter(this);
         recyclerView.setAdapter(vacationAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -58,7 +58,7 @@ public class VacationList extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        List<Vacation> allVacations = repository.getmAllVacations();
+        List<Vacation> allVacations = repository.getMAllVacations();
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final VacationAdapter vacationAdapter = new VacationAdapter(this);
         recyclerView.setAdapter(vacationAdapter);
@@ -89,5 +89,6 @@ public class VacationList extends AppCompatActivity {
         }
 
         return true;
+
     }
 }

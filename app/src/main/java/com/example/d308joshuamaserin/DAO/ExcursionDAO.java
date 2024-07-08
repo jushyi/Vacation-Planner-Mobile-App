@@ -14,6 +14,7 @@ import java.util.List;
 
 @Dao
 public interface ExcursionDAO {
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Excursion excursion);
 
@@ -28,4 +29,5 @@ public interface ExcursionDAO {
 
     @Query("SELECT * FROM EXCURSIONS WHERE vacationID=:vacation ORDER BY excursionID ASC")
     List<Excursion> getAssociatedExcursions(int vacation);
+
 }

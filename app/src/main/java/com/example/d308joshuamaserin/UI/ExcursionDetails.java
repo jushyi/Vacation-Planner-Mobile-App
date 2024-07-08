@@ -34,20 +34,25 @@ public class ExcursionDetails extends AppCompatActivity {
     String title;
     int excursionID;
     int vacationID;
+
     EditText editTitle;
+    TextView editExcursionDate;
+
     Repository repository;
     Excursion currentExcursion;
-    TextView editExcursionDate;
+
     DatePickerDialog.OnDateSetListener excursionDate;
     final Calendar myCalendarDate = Calendar.getInstance();
 
     String setDate;
 
+    //for alert
     Random rand = new Random();
     int numAlert = rand.nextInt(99999);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_excursion_details);
 
@@ -64,11 +69,13 @@ public class ExcursionDetails extends AppCompatActivity {
         String dateFormat = "MM/dd/yy";
         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
 
+        //for displaying date
         if (setDate != null) {
             try {
                 Date excursionDate = sdf.parse(setDate);
                 myCalendarDate.setTime(excursionDate);
-            } catch (ParseException e) {
+            }
+            catch (ParseException e) {
                 e.printStackTrace();
             }
         }
@@ -80,12 +87,13 @@ public class ExcursionDetails extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Date date;
+                //for displaying date
                 String info = editExcursionDate.getText().toString();
                 if (info.equals("")) info = setDate;
                 try {
                     myCalendarDate.setTime(sdf.parse(info));
-                } catch (ParseException e) {
+                }
+                catch (ParseException e) {
                     e.printStackTrace();
                 }
 
@@ -129,16 +137,19 @@ public class ExcursionDetails extends AppCompatActivity {
 
         //save excursion menu item
         if (item.getItemId() == R.id.saveExcursion) {
+
             String dateFormat = "MM/dd/yy";
             SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
             String excursionDateString = sdf.format(myCalendarDate.getTime());
             Vacation vacation = null;
-            List<Vacation> vacations = repository.getmAllVacations();
+            List<Vacation> vacations = repository.getMAllVacations();
             for (Vacation vac : vacations) {
                 if (vac.getVacationId() == vacationID) {
                     vacation = vac;
                 }
             }
+
+            //excursion date validation
             try {
                 Date excursionDate = sdf.parse(excursionDateString);
                 Date startDate = sdf.parse(vacation.getStartDate());
@@ -146,14 +157,15 @@ public class ExcursionDetails extends AppCompatActivity {
                 if (excursionDate.before(startDate) || excursionDate.after(endDate)) {
                     Toast.makeText(this, "Excursion date must be during the vacation dates", Toast.LENGTH_LONG).show();
                     return true;
-                } else {
+                }
+                else {
                     Excursion excursion;
                     //if the excursion doesn't exist makes a new excursion
                     if (excursionID == -1) {
                         //if the excursion list is empty, make this excursion its first excursion, otherwise makes it last
-                        if (repository.getmAllExcursions().size() == 0) excursionID = 1;
+                        if (repository.getMAllExcursions().size() == 0) excursionID = 1;
                         else
-                            excursionID = repository.getmAllExcursions().get(repository.getmAllExcursions().size() - 1).getExcursionID() + 1;
+                            excursionID = repository.getMAllExcursions().get(repository.getMAllExcursions().size() - 1).getExcursionID() + 1;
                         excursion = new Excursion(excursionID,
                                 editTitle.getText().toString(),
                                 vacationID,
@@ -170,16 +182,16 @@ public class ExcursionDetails extends AppCompatActivity {
                         this.finish();
                     }
                 }
-            } catch (ParseException e) {
+            }
+            catch (ParseException e) {
                 e.printStackTrace();
             }
             return true;
         }
 
-
         //delete excursion menu item
         if (item.getItemId() == R.id.deleteExcursion) {
-            for (Excursion excursion : repository.getmAllExcursions()) {
+            for (Excursion excursion : repository.getMAllExcursions()) {
                 if (excursion.getExcursionID() == excursionID) currentExcursion = excursion;
             }
             repository.delete(currentExcursion);
@@ -189,17 +201,21 @@ public class ExcursionDetails extends AppCompatActivity {
 
         //excursion date alarm
         if (item.getItemId() == R.id.excursionAlert) {
+
             String dateFromScreen = editExcursionDate.getText().toString();
             String alert = "Excursion " + title + " is today";
 
-            String myFormat = "MM/dd/yy";
-            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+            String dateFormat = "MM/dd/yy";
+            SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
+
             Date myDate = null;
             try {
                 myDate = sdf.parse(dateFromScreen);
-            } catch (ParseException e) {
+            }
+            catch (ParseException e) {
                 e.printStackTrace();
             }
+
             Long trigger = myDate.getTime();
             Intent intent = new Intent(ExcursionDetails.this, MyReceiver.class);
             intent.putExtra("key", alert);
@@ -208,9 +224,11 @@ public class ExcursionDetails extends AppCompatActivity {
             numAlert = rand.nextInt(99999);
 
             return true;
+
         }
 
         return super.onOptionsItemSelected(item);
+
     }
 
     @Override
@@ -219,4 +237,5 @@ public class ExcursionDetails extends AppCompatActivity {
 
         updateLabel();
     }
+
 }

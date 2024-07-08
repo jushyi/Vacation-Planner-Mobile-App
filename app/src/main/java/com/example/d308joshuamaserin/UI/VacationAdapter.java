@@ -21,11 +21,6 @@ public class VacationAdapter extends RecyclerView.Adapter<VacationAdapter.Vacati
     private final Context context;
     private final LayoutInflater mInflater;
 
-    public VacationAdapter(Context context) {
-        mInflater = LayoutInflater.from(context);
-        this.context = context;
-    }
-
     //sets up the recyclerview list
     public class VacationViewHolder extends RecyclerView.ViewHolder {
         private final TextView vacationItemView;
@@ -50,7 +45,11 @@ public class VacationAdapter extends RecyclerView.Adapter<VacationAdapter.Vacati
         }
     }
 
-    @NonNull
+    public VacationAdapter(Context context) {
+        mInflater = LayoutInflater.from(context);
+        this.context = context;
+    }
+
     @Override
     public VacationAdapter.VacationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.vacation_list_item, parent, false);
@@ -63,17 +62,9 @@ public class VacationAdapter extends RecyclerView.Adapter<VacationAdapter.Vacati
             Vacation current = mVacations.get(position);
             String title = current.getVacationTitle();
             holder.vacationItemView.setText(title);
-        } else {
-            holder.vacationItemView.setText("No vacation title");
         }
-    }
-
-    @Override
-    public int getItemCount() {
-        if (mVacations != null) {
-            return mVacations.size();
-        } else {
-            return 0;
+        else {
+            holder.vacationItemView.setText("No vacation title");
         }
     }
 
@@ -81,4 +72,10 @@ public class VacationAdapter extends RecyclerView.Adapter<VacationAdapter.Vacati
         mVacations = vacations;
         notifyDataSetChanged();
     }
+
+    public int getItemCount() {
+        if (mVacations != null) return mVacations.size();
+        else return 0;
+    }
+
 }

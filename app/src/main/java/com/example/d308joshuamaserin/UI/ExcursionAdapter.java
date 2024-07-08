@@ -16,6 +16,7 @@ import com.example.d308joshuamaserin.entities.Excursion;
 import java.util.List;
 
 public class ExcursionAdapter extends RecyclerView.Adapter<ExcursionAdapter.ExcursionViewHolder> {
+
     private List<Excursion> mExcursions;
     private final Context context;
     private final LayoutInflater mInflater;
@@ -61,12 +62,13 @@ public class ExcursionAdapter extends RecyclerView.Adapter<ExcursionAdapter.Excu
             Excursion current = mExcursions.get(position);
             String title = current.getExcursionTitle();
             holder.excursionItemView.setText(title);
-        } else {
+        }
+        else {
             holder.excursionItemView.setText("No excursion title");
         }
     }
 
-    public void setmExcursions(List<Excursion> excursions) {
+    public void setMExcursions(List<Excursion> excursions) {
         mExcursions = excursions;
         notifyDataSetChanged();
     }
@@ -75,4 +77,5 @@ public class ExcursionAdapter extends RecyclerView.Adapter<ExcursionAdapter.Excu
         if (mExcursions != null) return mExcursions.size();
         else return 0;
     }
+
 }
