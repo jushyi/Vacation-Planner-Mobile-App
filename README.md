@@ -17,7 +17,7 @@ NOTE: When adding or updating a vacation to input the start and end dates, selec
 3. To add your own vacation, click the floating action button on the bottom right hand corner of the screen. It has a '+' sign. This will take you to the Vacation Details page. Here you can type in the vacation title, hotel you will be staying at and choose a start and end date. You can then save this vacation by clicking the three dots in the top right corner of the page and selecting 'Save Vacation'. After selecting 'Save Vacation' you will be taken back to the Vacation List page and you will be able to see the vacation you just added.
 4. To update a vacation, from the Vacation List page select the vacation you would like to update. This will take you to the Vacation Details page where you can update the title, hotel, start, and end dates of your vacation. Once you have inputted all of the updated information select the three dots in the top right corner and click 'Save Vacation'. Now your vacation details have been updated and it will take you back to the Vacation List page.
 
-NOTE: When adding or updating a vacation to input the start and end dates the app will not allow you to save the vacation if the end date is before the start date.
+NOTE: When adding or updating a vacation to input the start and end dates, the app will not allow you to save the vacation if the end date is before the start date.
 
 5. To delete a vacation, from the Vacation List page select the vacation you would like to delete. Then select the three dots in the top right corner and select 'Delete Vacation'. After that the vacation will be deleted and it will take you back to the Vacation List page. 
 
